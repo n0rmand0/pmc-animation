@@ -1,0 +1,159 @@
+.app {
+  text-align: center;
+}
+
+.logo-container {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container--dark {
+  background: #333;
+}
+
+.logo-container--light {
+  background: #fff;
+}
+
+svg {
+  transform-box: fill-box;
+}
+
+.logo {
+  position: relative;
+  width: 80%;
+  overflow: hidden;
+}
+
+.logo__shine {
+  position: absolute;
+  left: -100%;
+  height: 100%;
+  width: 30%;
+  animation-name: shine;
+  animation-timing-function: ease;
+  animation-duration: 12s;
+  animation-delay: 3s;
+  animation-fill-mode: both;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  background: linear-gradient(
+    61deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.logo__shine--dark {
+  background: linear-gradient(
+    61deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(51, 51, 51, 0.7189250700280112) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.logo {
+  .title {
+    position: relative;
+    animation-name: slide-in;
+    animation-duration: 0.8s;
+    animation-delay: 2.5s;
+    animation-fill-mode: both;
+  }
+  .subtitle {
+    animation-name: slide-in;
+    animation-duration: 1s;
+    animation-delay: 2.6s;
+    animation-fill-mode: both;
+  }
+}
+
+.logo-container--light {
+  .title,
+  .subtitle {
+    fill: #333 !important;
+  }
+
+  .square [class^="white"] {
+    fill: #999 !important;
+  }
+}
+
+.square path,
+.square rect {
+  animation-name: pop;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  transform-origin: center;
+  transform-box: fill-box;
+  // animation-iteration-count: infinite;
+  opacity: 0;
+
+  // pop in randomly
+  @for $i from 1 through 30 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{random(100) / 100}s;
+    }
+  }
+}
+
+.square [class^="orange"] {
+  animation-name: fade-in;
+  opacity: 0;
+
+  // color in randomly
+  @for $i from 1 through 40 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{random(100) / 100 +1.2}s !important;
+    }
+  }
+}
+
+// animations
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 20%;
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 200%;
+    opacity: 100%;
+  }
+}
