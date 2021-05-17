@@ -1,23 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as Logo } from "./logo-dark.svg";
 import "./App.scss";
 
 function App() {
-  return (
-    <div className="app">
-      <div className="logo-container logo-container--light">
-        <div className="logo">
-          <div className="logo__shine"></div>
-          <Logo />
-        </div>
-      </div>
-      <div className="logo-container logo-container--dark">
-        <div className="logo">
-          <div className="logo__shine logo__shine--dark"></div>
+  let [logoClass, setLogoClass] = useState("logo");
+  let [mode, setMode] = useState(false);
+  // on load
+  useEffect(() => {
+    setLogoClass("logo");
+    setTimeout(() => {
+      setLogoClass("logo logo--loop");
+    }, 2500);
+  }, [mode]);
 
-          <Logo />
+  return (
+    <div className="app" onClick={() => setMode(!mode)}>
+      {mode && (
+        <div className="logo-container logo-container--light">
+          <div className={logoClass}>
+            <div className="logo__shine"></div>
+            <Logo />
+          </div>
         </div>
-      </div>
+      )}
+      {!mode && (
+        <div className="logo-container logo-container--dark">
+          <div className={logoClass}>
+            <div className="logo__shine logo__shine--dark"></div>
+
+            <Logo />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

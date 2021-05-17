@@ -3,7 +3,7 @@
 }
 
 .logo-container {
-  height: 50vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +35,7 @@ svg {
   animation-name: shine;
   animation-timing-function: ease;
   animation-duration: 12s;
-  animation-delay: 3s;
+  animation-delay: 2s;
   animation-fill-mode: both;
   animation-direction: normal;
   animation-iteration-count: infinite;
@@ -61,13 +61,13 @@ svg {
     position: relative;
     animation-name: slide-in;
     animation-duration: 0.8s;
-    animation-delay: 2.5s;
+    animation-delay: 0.5s;
     animation-fill-mode: both;
   }
   .subtitle {
     animation-name: slide-in;
     animation-duration: 1s;
-    animation-delay: 2.6s;
+    animation-delay: 0.6s;
     animation-fill-mode: both;
   }
 }
@@ -94,22 +94,45 @@ svg {
   opacity: 0;
 
   // pop in randomly
-  @for $i from 1 through 30 {
+  @for $i from 1 through 40 {
     &:nth-child(#{$i}) {
-      animation-delay: #{random(100) / 100}s;
+      animation-delay: #{random(100) / 90}s;
     }
   }
 }
 
 .square [class^="orange"] {
   animation-name: fade-in;
+  animation-duration: 0.8s;
   opacity: 0;
 
   // color in randomly
-  @for $i from 1 through 40 {
+  @for $i from 1 through 50 {
     &:nth-child(#{$i}) {
-      animation-delay: #{random(100) / 100 +1.2}s !important;
+      animation-delay: #{random(100) / 90 +1.2}s !important;
     }
+  }
+}
+
+// looping animation starts after initial
+.logo--loop {
+  .square path,
+  .square rect {
+    animation-name: flicker;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    // animation-direction: ;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    @for $i from 1 through 50 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{random(100) / 10}s;
+      }
+    }
+  }
+  .white-back {
+    display: none !important;
   }
 }
 
@@ -143,6 +166,17 @@ svg {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes flicker {
+  0%,
+  30%,
+  100% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0.3;
   }
 }
 
