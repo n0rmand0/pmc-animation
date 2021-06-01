@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+# Print Media Connect Logo Animation
+This project includes a loading animation in dark/light versions for the Print Media Connect Logo.  All animation is done on the SVG logo with css and js.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
